@@ -87,11 +87,11 @@ export namespace ICRecord {
    * const value2 = ICRecord.fetch(record, 'c', 0); // 0
    * ```
    */
-  export function get<K extends string | number, V>(
+  export function get<K extends string | number, V, V2>(
     record: ICRecord<K, V>,
     key: K,
-    defaultValue: V
-  ): V {
+    defaultValue: V2
+  ): V | V2 {
     return fetch(record, key) ?? defaultValue;
   }
 
