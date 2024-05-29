@@ -160,7 +160,7 @@ export namespace ICRecord {
   }
 
   /**
-   * Merge the cache into the map.
+   * Merge the internal cache into the map.
    *
    * Example:
    * ```ts
