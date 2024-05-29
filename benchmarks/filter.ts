@@ -7,17 +7,17 @@ const bench = new Bench({time: 100});
 
 bench
   .add('ICRecord', () => {
-    ICRecord.map(icr, (v, _k) => v + 1);
+    ICRecord.filter(icr, (v, _k) => v % 2 === 0);
   })
   .add('Immutable.Map', async () => {
-    im.map((v, _k) => v + 1);
+    im.filter((v, _k) => v % 2 === 0);
   });
 
 const run = async () => {
   await bench.warmup(); // make results more reliable, ref: https://github.com/tinylibs/tinybench/pull/50
   await bench.run();
 
-  console.log('map.ts');
+  console.log('filter.ts');
   console.table(bench.table());
 };
 

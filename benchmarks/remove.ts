@@ -9,22 +9,22 @@ bench
   .add('ICRecord', () => {
     let icr = icr2;
     for (let i = 0; i < 1000; i++) {
-      icr = ICRecord.put(icr, i.toString(), i + 1);
+      icr = ICRecord.remove(icr, i.toString());
     }
     ICRecord.mergeCache(icr);
   })
   .add('Immutable.Map', async () => {
     let im = im2;
     for (let i = 0; i < 1000; i++) {
-      im = im.set(i.toString(), i + 1);
+      im = im.remove(i.toString());
     }
   });
 
 const run = async () => {
-  await bench.warmup();
+  await bench.warmup(); // make results more reliable, ref: https://github.com/tinylibs/tinybench/pull/50
   await bench.run();
 
-  console.log('put.ts');
+  console.log('remove.ts');
   console.table(bench.table());
 };
 

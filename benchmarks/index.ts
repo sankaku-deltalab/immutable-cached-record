@@ -1,2 +1,9 @@
+import './create';
+import './fetch';
+import './filter';
 import './map';
+import './merge-cache';
+import './put-half';
 import './put';
+import './remove';
+import './to-array';

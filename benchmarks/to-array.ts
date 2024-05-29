@@ -7,17 +7,17 @@ const bench = new Bench({time: 100});
 
 bench
   .add('ICRecord', () => {
-    ICRecord.map(icr, (v, _k) => v + 1);
+    ICRecord.toArray(icr);
   })
   .add('Immutable.Map', async () => {
-    im.map((v, _k) => v + 1);
+    im.toArray();
   });
 
 const run = async () => {
   await bench.warmup(); // make results more reliable, ref: https://github.com/tinylibs/tinybench/pull/50
   await bench.run();
 
-  console.log('map.ts');
+  console.log('to-array.ts');
   console.table(bench.table());
 };
 

@@ -1,22 +1,19 @@
 /* eslint-disable node/no-extraneous-import */
 import {Bench} from 'tinybench';
 import {ICRecord} from '../src';
-import {icr as icr2, im as im2} from './utils';
+import {icr, im} from './utils';
 
 const bench = new Bench({time: 100});
 
 bench
   .add('ICRecord', () => {
-    let icr = icr2;
     for (let i = 0; i < 1000; i++) {
-      icr = ICRecord.put(icr, i.toString(), i + 1);
+      ICRecord.fetch(icr, i.toString());
     }
-    ICRecord.mergeCache(icr);
   })
   .add('Immutable.Map', async () => {
-    let im = im2;
     for (let i = 0; i < 1000; i++) {
-      im = im.set(i.toString(), i + 1);
+      im.get(i.toString());
     }
   });
 
@@ -24,7 +21,7 @@ const run = async () => {
   await bench.warmup();
   await bench.run();
 
-  console.log('put.ts');
+  console.log('fetch.ts');
   console.table(bench.table());
 };
 
