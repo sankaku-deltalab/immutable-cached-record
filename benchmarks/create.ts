@@ -2,9 +2,10 @@
 import {Bench} from 'tinybench';
 import * as Immutable from 'immutable';
 import {ICRecord} from '../src';
+import {size} from './utils';
 
 const mapOriginal: Record<string, number> = {};
-for (let i = 0; i < 1000; i++) {
+for (let i = 0; i < size; i++) {
   mapOriginal[i.toString()] = i;
 }
 
