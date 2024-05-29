@@ -21,7 +21,7 @@
     "prepare": "npm run compile",
     "pretest": "npm run compile",
     "posttest": "npm run lint",
-    "benchmark": "tsc && node build/benchmarks/*.js"
+    "benchmark": "tsc && node build/benchmarks/index.js"
   },
   "devDependencies": {
     "@types/node": "20.11.5",
