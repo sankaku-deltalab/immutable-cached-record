@@ -227,4 +227,41 @@ export namespace ICRecord {
     }
     return create(newMap);
   }
+
+  /**
+   * Iterate the record.
+   *
+   * NOTE: This operation merges the cache but does not return a new record.
+   *
+   * Example:
+   * ```ts
+   * const record = ICRecord.create({a: 1, b: 2});
+   * for (const [key, value] of ICRecord.stream(record)) {
+   *  console.log(key, value);  // a 1, b 2
+   * }
+   * ```
+   */
+  export function stream<K extends string | number, V>(
+    record: ICRecord<K, V>
+  ): Iterable<[K, V]> {
+    const r2 = mergeCache(record);
+    return Object.entries(r2.map) as Iterable<[K, V]>;
+  }
+
+  /**
+   * Convert the record to an array.
+   *
+   * NOTE: This operation merges the cache but does not return a new record.
+   *
+   * Example:
+   * ```ts
+   * const record = ICRecord.create({a: 1, b: 2});
+   * const array = ICRecord.toArray(record); // [['a', 1], ['b', 2]]
+   * ```
+   */
+  export function toArray<K extends string | number, V>(
+    record: ICRecord<K, V>
+  ): [K, V][] {
+    return [...stream(record)];
+  }
 }
