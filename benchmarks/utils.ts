@@ -12,7 +12,8 @@ for (let i = 0; i < size; i++) {
 let icr2 = ICRecord.create(mapOriginal);
 // Add half of the items to the cache
 for (let i = 0; i < sizeHalf; i++) {
-  icr2 = ICRecord.put(icr2, i.toString(), i);
+  const j = i * 2;
+  icr2 = ICRecord.put(icr2, j.toString(), j);
 }
 
 export const rec = mapOriginal;
