@@ -1,13 +1,16 @@
 /* eslint-disable node/no-extraneous-import */
 import {Bench} from 'tinybench';
 import {ICRecord} from '../src';
-import {icr, im} from './utils';
+import {rec, icr, im} from './utils';
 
 const bench = new Bench({time: 100});
 
 bench
   .add('ICRecord', () => {
     ICRecord.toArray(icr);
+  })
+  .add('Vanilla Record', () => {
+    Object.entries(rec);
   })
   .add('Immutable.Map', async () => {
     im.toArray();

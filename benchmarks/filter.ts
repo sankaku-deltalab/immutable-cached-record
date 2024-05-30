@@ -1,13 +1,16 @@
 /* eslint-disable node/no-extraneous-import */
 import {Bench} from 'tinybench';
 import {ICRecord} from '../src';
-import {icr, im} from './utils';
+import {rec, icr, im} from './utils';
 
 const bench = new Bench({time: 100});
 
 bench
   .add('ICRecord', () => {
     ICRecord.filter(icr, (v, _k) => v % 2 === 0);
+  })
+  .add('Vanilla Record', () => {
+    Object.fromEntries(Object.entries(rec).filter(([_k, v]) => v % 2 === 0));
   })
   .add('Immutable.Map', async () => {
     im.filter((v, _k) => v % 2 === 0);

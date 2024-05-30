@@ -15,5 +15,6 @@ for (let i = 0; i < sizeHalf; i++) {
   icr2 = ICRecord.put(icr2, i.toString(), i);
 }
 
+export const rec = mapOriginal;
 export const icr = icr2;
 export const im = Immutable.Map(mapOriginal);
